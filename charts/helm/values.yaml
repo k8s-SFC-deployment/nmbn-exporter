@@ -1,0 +1,29 @@
+image:
+  repository: euidong/vnf-scc-sfc
+  pullPolicy: IfNotPresent
+  tag: ""
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+podLabels: {}
+
+resources:
+  limits:
+    cpu: "100m"
+    memory: "200Mi"
+  requests:
+    cpu: "100m"
+    memory: "200Mi"
+
+service:
+  type: ClusterIP
+  port: 9279
+
+# Target to get data.
+# Example)
+# targets:
+# - ip: "127.0.0.1"
+# - ip: "192.168.0.1"
+targets: []

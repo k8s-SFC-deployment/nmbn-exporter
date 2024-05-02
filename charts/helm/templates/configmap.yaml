@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "nmbn-exporter.fullname" . }}-config
+  namespace: {{ .Release.Namespace | quote }}
+data:
+  config.yaml: |
+    targets:
+    {{- toYaml .Values.targets | nindent 4 }}
