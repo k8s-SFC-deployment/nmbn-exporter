@@ -1,5 +1,5 @@
 image:
-  repository: euidong/vnf-scc-sfc
+  repository: euidong/nmbn-exporter
   pullPolicy: IfNotPresent
   tag: ""
 
