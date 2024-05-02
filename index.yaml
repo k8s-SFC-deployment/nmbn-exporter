@@ -1,0 +1,24 @@
+apiVersion: v1
+entries:
+  nmbn-exporter:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2024-05-02T11:33:31.206501417Z"
+    description: Prometheus Exporter for network metrics between nodes with iptables.
+    digest: 559de64242ec1743003d3644555716f562e0ecd3149ed7a5e8a236a498b74d30
+    home: https://github.com/k8s-SFC-deployment/nmbn-exporter
+    keywords:
+    - prometheus-exporter
+    - iptables
+    maintainers:
+    - email: justicedong@postech.ac.kr
+      name: euidong
+      url: https://euidong.github.io
+    name: nmbn-exporter
+    sources:
+    - https://github.com/k8s-SFC-deployment/nmbn-exporter
+    type: application
+    urls:
+    - https://github.com/k8s-SFC-deployment/nmbn-exporter/releases/download/nmbn-exporter-0.0.1/nmbn-exporter-0.0.1.tgz
+    version: 0.0.1
+generated: "2024-05-02T11:33:31.206506687Z"
