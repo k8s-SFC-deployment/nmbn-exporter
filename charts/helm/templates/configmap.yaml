@@ -7,3 +7,4 @@ data:
   config.yaml: |
     targets:
     {{- toYaml .Values.targets | nindent 4 }}
+    pingInterval: {{ .Values.pingInterval }}
