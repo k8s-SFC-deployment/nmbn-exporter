@@ -1,7 +1,7 @@
 apiVersion: v2
 name: nmbn-exporter
 type: application
-version: 0.0.1
+version: 0.0.2
 description: Prometheus Exporter for network metrics between nodes with iptables.
 keywords:
   - prometheus-exporter
@@ -13,4 +13,4 @@ maintainers:
   - name: euidong
     email: justicedong@postech.ac.kr
     url: https://euidong.github.io
-appVersion: 0.0.1
+appVersion: 0.0.2

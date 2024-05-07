@@ -8,7 +8,8 @@ import (
 )
 
 type Config struct {
-	Targets []TargetConfig `yaml:"targets"`
+	Targets      []TargetConfig `yaml:"targets"`
+	PingInterval int            `yaml:"pingInterval"`
 }
 
 type TargetConfig struct {

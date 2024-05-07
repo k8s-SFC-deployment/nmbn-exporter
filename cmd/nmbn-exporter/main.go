@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	addr       = kingpin.Flag("web.listen-address", "The Address to listen on for HTTP Requests.").Default(":9279").String()
+	addr       = kingpin.Flag("web.listen-address", "The Address to listen on for HTTP Requests.").Default("9279").String()
 	configFile = kingpin.Flag("config.path", "Path to config file").Default("").String()
 )
 
@@ -34,8 +34,8 @@ func main() {
 
 	http.Handle("/metrics", promhttp.Handler())
 
-	log.Println("Listening on ", *addr)
-	if err := http.ListenAndServe(*addr, nil); err != nil {
+	log.Println("Listening on ", ":"+*addr)
+	if err := http.ListenAndServe(":"+*addr, nil); err != nil {
 		log.Fatal(err)
 	}
 }

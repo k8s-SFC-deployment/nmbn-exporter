@@ -1,2 +1,3 @@
 targets:
 - ip: "localhost"
+pingInterval: 1

@@ -21,8 +21,6 @@ type bandwidthCollector struct {
 	ipt *iptables.IPTables
 	cfg *config.Config
 
-	myIP string
-
 	receives  map[string]*bandwidthMetric
 	transmits map[string]*bandwidthMetric
 }
@@ -72,7 +70,7 @@ func initIptables(cfg *config.Config, ipt *iptables.IPTables) error {
 		if err = ipt.Append(defaultTable, "OUTPUT", "-d", target.IP, "-j", outChainName); err != nil {
 			return err
 		}
-		fmt.Printf("TARGET[%s] is successfully registered.\n", target.IP)
+		fmt.Printf("[Bandwidth] TARGET(%s) is successfully registered.\n", target.IP)
 	}
 	return nil
 }
@@ -161,7 +159,7 @@ func (bc *bandwidthCollector) Update(ch chan<- prometheus.Metric) error {
 
 		for i := range 4 {
 			ch <- prometheus.MustNewConstMetric(
-				makeDesc(metricNames[i], labels[i]),
+				makeBandwidthDesc(metricNames[i], labels[i]),
 				prometheus.CounterValue,
 				metrics[i],
 			)
@@ -171,6 +169,6 @@ func (bc *bandwidthCollector) Update(ch chan<- prometheus.Metric) error {
 	return nil
 }
 
-func makeDesc(metricName string, labels prometheus.Labels) *prometheus.Desc {
+func makeBandwidthDesc(metricName string, labels prometheus.Labels) *prometheus.Desc {
 	return prometheus.NewDesc(prometheus.BuildFQName(namespace, bandwidth_subsystem, metricName), fmt.Sprintf("%s (%s) %s", fullNamespace, bandwidth_subsystem, metricName), nil, labels)
 }

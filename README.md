@@ -1,6 +1,6 @@
 # Network Metric Between Nodes Exporter
 
-Prometheus Exporter for network metrics between nodes with [iptables](https://netfilter.org/projects/iptables/index.html).
+Prometheus Exporter for network metrics between nodes with [iptables](https://github.com/coreos/go-iptables) and [ping](https://github.com/prometheus-community/pro-bing).
 
 ## Deployment
 
