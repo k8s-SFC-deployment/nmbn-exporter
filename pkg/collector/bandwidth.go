@@ -77,14 +77,26 @@ func initIptables(cfg *config.Config, ipt *iptables.IPTables) error {
 
 func clearIptables(cfg *config.Config, ipt *iptables.IPTables) {
 	for _, target := range cfg.Targets {
-		ipt.Delete(defaultTable, "INPUT", "-s", target.IP, "-j", inChainName)
-		ipt.Delete(defaultTable, "OUTPUT", "-d", target.IP, "-j", outChainName)
+		if err := ipt.Delete(defaultTable, "INPUT", "-s", target.IP, "-j", inChainName); err != nil {
+			fmt.Println(err.Error())
+		}
+		if err := ipt.Delete(defaultTable, "OUTPUT", "-d", target.IP, "-j", outChainName); err != nil {
+			fmt.Println(err.Error())
+		}
+	}
+	if err := ipt.Delete(defaultTable, inChainName, "-j", "RETURN"); err != nil {
+		fmt.Println(err.Error())
+	}
+	if err := ipt.Delete(defaultTable, outChainName, "-j", "RETURN"); err != nil {
+		fmt.Println(err.Error())
 	}
 
-	ipt.ClearChain(defaultTable, inChainName)
-	ipt.ClearChain(defaultTable, outChainName)
-	ipt.DeleteChain(defaultTable, inChainName)
-	ipt.DeleteChain(defaultTable, outChainName)
+	if err := ipt.ClearAndDeleteChain(defaultTable, inChainName); err != nil {
+		fmt.Println(err.Error())
+	}
+	if err := ipt.ClearAndDeleteChain(defaultTable, outChainName); err != nil {
+		fmt.Println(err.Error())
+	}
 }
 
 func (bc *bandwidthCollector) updateWithIptables() error {
